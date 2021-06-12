@@ -10,6 +10,7 @@
 #include <linux/debugfs.h>
 #include <linux/uaccess.h>
 #include <linux/firmware.h>
+#include <linux/version.h>
 
 #include <linux/of.h>
 #include <linux/of_gpio.h>
@@ -610,7 +611,9 @@ static const struct iio_info adrf6821_phy_info = {
 	.write_raw = &adrf6821_phy_write_raw,
 	.read_avail = adrf6821_phy_read_avail,
 	.attrs = &adrf6821_phy_attribute_group,
+#if LINUX_VERSION_CODE <= KERNEL_VERSION(5,0,0)
 	.driver_module = THIS_MODULE,
+#endif	
 };
 
 //here starts stuff dealing with the extended info
